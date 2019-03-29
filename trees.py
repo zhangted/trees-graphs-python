@@ -1,7 +1,4 @@
 class TreeNode:
-	val = None
-	left = None
-	right = None
 	def __init__(self, value, left, right):
 		self.val = value
 		self.left = left
@@ -30,6 +27,30 @@ def postOrderTraversal(inp):
 		postOrderTraversal(inp.left)
 		postOrderTraversal(inp.right)
 		printNode(inp)
+
+def invertIOT(inp):
+	#inverted in order traversal
+	#right,root,left
+	if inp:
+		invertIOT(inp.right)
+		printNode(inp)
+		invertIOT(inp.left)
+
+def invertPREOT(inp):
+	#invert pre order traversal
+	#right,left,root
+	if inp:
+		invertPREOT(inp.right)
+		invertPREOT(inp.left)
+		printNode(inp)
+
+def invertPOSTOT(inp):
+	#invert post order traversal
+	#root,right,left
+	if inp:
+		printNode(inp)
+		invertPOSTOT(inp.right)
+		invertPOSTOT(inp.left)
 	
 
 def main():
@@ -40,6 +61,8 @@ def main():
 
 	root = TreeNode(10,TreeNode(5,TreeNode(3,None,None),TreeNode(7,None,None)),TreeNode(20,None,TreeNode(30,None,None)))
 	postOrderTraversal(root)
+	print(";;;;;\n")
+	invertPOSTOT(root)
 	
 
 main()
